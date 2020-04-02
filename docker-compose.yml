@@ -1,36 +1,47 @@
 version: '3'
 
 services:
+  # Sonarr is for series download automation
   sonarr:
     image: mdhiggins/sonarr-sma
     container_name: adamino-sonarr
     volumes:
       - ./sonarr-data:/config
       - ./config:/usr/local/sma/config
+      # Set to folder with shows
       - /volume1/Series/TV show:/tv
+      # Set to download folder
       - /volume1/Download/complete:/downloads
     ports:
       - 1337:8989
     environment:
+      # Set to user with access to folders
       - PUID=1026
+      # Set to user group with access to folders
       - PGID=65538
     restart: always
 
+  # Radarr is for movie download automation
   radarr:
     image: mdhiggins/radarr-sma
     container_name: adamino-radarr
     volumes:
       - ./radarr-data:/config
       - ./config:/usr/local/sma/config
+      # Set to folder with movies
       - /volume2/Movies:/movies
+      # Set to download folder
       - /volume1/Download/complete:/downloads
     ports:
       - 7878:7878
     environment:
+      # Set to user with access to folders
       - PUID=1026
+      # Set to user group with access to folders
       - PGID=65538
     restart: always
 
+  # Portainer is a docker management interface
   portainer:
     image: portainer/portainer
     container_name: portainer
@@ -41,6 +52,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
 
+  # Watchtower is a docker image updater
   watchtower:
     image: v2tec/watchtower
     container_name: watchtower
