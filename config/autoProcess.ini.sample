@@ -1,0 +1,197 @@
+[Converter]
+ffmpeg = ffmpeg.exe
+ffprobe = ffprobe.exe
+threads = 0
+hwaccels = dxva2, cuvid, qsv, d3d11va
+hwaccel-decoders = h264_cuvid, mjpeg_cuvid, mpeg1_cuvid, mpeg2_cuvid, mpeg4_cuvid, vc1_cuvid, hevc_qsv, h264_qsv
+output-directory =
+output-format = mp4
+output-extension = mp4
+temp-extension =
+minimum-size = 0
+ignored-extensions = nfo, ds_store
+copy-to =
+move-to =
+delete-original = True
+sort-streams = True
+process-same-extensions = False
+force-convert = False
+post-process = False
+preopts =
+postopts =
+
+[Permissions]
+chmod = 0644
+uid = -1
+gid = -1
+
+[Metadata]
+relocate-moov = True
+full-path-guess = True
+tag = True
+tag-language = eng
+download-artwork = poster
+preserve-source-disposition = True
+
+[Video]
+codec = h264, x264
+max-bitrate = 0
+crf = -1
+crf-profiles =
+max-width = 0
+profile =
+max-level = 0.0
+pix-fmt =
+
+[Audio]
+codec = ac3
+languages =
+default-language =
+first-stream-of-language = False
+allow-language-relax = True
+channel-bitrate = 128
+max-bitrate = 0
+max-channels = 0
+prefer-more-channels = True
+default-more-channels = True
+filter =
+sample-rates =
+copy-original = False
+aac-adtstoasc = False
+ignore-truehd = mp4, m4v
+
+[Universal Audio]
+codec = aac
+channel-bitrate = 128
+first-stream-only = False
+move-after = False
+filter =
+
+[Subtitle]
+codec = mov_text
+codec-image-based =
+languages =
+default-language =
+first-stream-of-language = False
+encoding =
+burn-subtitles = False
+burn-dispositions =
+download-subs = False
+download-hearing-impaired-subs = False
+download-providers =
+embed-subs = True
+embed-image-subs = False
+embed-only-internal-subs = False
+filename-dispositions = forced
+ignore-embedded-subs = False
+attachment-codec =
+
+[Sonarr]
+host = localhost
+port = 8989
+apikey =
+ssl = False
+webroot =
+
+[Radarr]
+host = localhost
+port = 7878
+apikey =
+ssl = False
+webroot =
+
+[Sickbeard]
+host = localhost
+port = 8081
+ssl = False
+apikey =
+webroot =
+username =
+password =
+
+[Sickrage]
+host = localhost
+port = 8081
+ssl = False
+apikey =
+webroot =
+username =
+password =
+
+[CouchPotato]
+host = localhost
+port = 5050
+username =
+password =
+apikey =
+delay = 65
+method = renamer
+delete-failed = False
+ssl = False
+webroot =
+
+[SABNZBD]
+convert = True
+sickbeard-category = sickbeard
+sickrage-category = sickrage
+couchpotato-category = couchpotato
+sonarr-category = sonarr
+radarr-category = radarr
+bypass-category = bypass
+output-directory =
+
+[Deluge]
+couchpotato-label = couchpotato
+sickbeard-label = sickbeard
+sickrage-label = sickrage
+sonarr-label = sonarr
+radarr-label = radarr
+bypass-label = bypass
+convert = True
+host = localhost
+port = 58846
+username =
+password =
+output-directory =
+remove = False
+
+[qBittorrent]
+couchpotato-label = couchpotato
+sickbeard-label = sickbeard
+sickrage-label = sickrage
+sonarr-label = sonarr
+radarr-label = radarr
+bypass-label = bypass
+convert = True
+action-before =
+action-after =
+host = localhost
+port = 8080
+ssl = False
+username =
+password =
+output-directory =
+
+[uTorrent]
+couchpotato-label = couchpotato
+sickbeard-label = sickbeard
+sickrage-label = sickrage
+sonarr-label = sonarr
+radarr-label = radarr
+bypass-label = bypass
+convert = True
+webui = False
+action-before =
+action-after =
+host = localhost
+ssl = False
+port = 8080
+username =
+password =
+output-directory =
+
+[Plex]
+host = localhost
+port = 32400
+refresh = False
+token =
