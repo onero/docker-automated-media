@@ -41,6 +41,25 @@ services:
       - PGID=65538
     restart: always
 
+  # Bazaar is for subtitle download automation
+  bazarr:
+    image: linuxserver/bazarr
+    container_name: adamino-bazarr
+    volumes:
+      - ./bazarr-data:/config
+      # Set to folder with movies
+      - /volume2/Movies:/movies
+      # Set to folder with shows
+      - /volume1/Series/TV show:/tv
+    ports:
+      - 6767:6767
+    environment:
+      # Set to user with access to folders
+      - PUID=1026
+      # Set to user group with access to folders
+      - PGID=65538
+    restart: always
+
   # Portainer is a docker management interface
   portainer:
     image: portainer/portainer
