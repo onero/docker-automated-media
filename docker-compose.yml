@@ -19,6 +19,8 @@ services:
       - PUID=1026
       # Set to user group with access to folders
       - PGID=65538
+      # Set timezone for logs
+      - TZ=Europe/Copenhagen
     restart: always
 
   # Radarr is for movie download automation
@@ -39,6 +41,8 @@ services:
       - PUID=1026
       # Set to user group with access to folders
       - PGID=65538
+      # Set timezone for logs
+      - TZ=Europe/Copenhagen
     restart: always
 
   # Bazaar is for subtitle download automation
@@ -58,6 +62,8 @@ services:
       - PUID=1026
       # Set to user group with access to folders
       - PGID=65538
+      # Set timezone for logs
+      - TZ=Europe/Copenhagen
     restart: always
 
   # Portainer is a docker management interface
