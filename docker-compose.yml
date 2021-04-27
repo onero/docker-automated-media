@@ -13,7 +13,7 @@ services:
       # Set to download folder
       - /volume1/Download/complete:/downloads
     ports:
-      - 1337:8989
+      - 8989:8989
     environment:
       # Set to user with access to folders
       - PUID=1026
@@ -65,22 +65,3 @@ services:
       # Set timezone for logs
       - TZ=Europe/Copenhagen
     restart: always
-
-  # Portainer is a docker management interface
-  portainer:
-    image: portainer/portainer
-    container_name: portainer
-    ports:
-      - 9000:9000
-    volumes:
-      - ./portainer-data:/data
-      - /var/run/docker.sock:/var/run/docker.sock
-    restart: always
-
-  # Watchtower is a docker image updater
-  watchtower:
-    image: v2tec/watchtower
-    container_name: watchtower
-    restart: always
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
