@@ -1,4 +1,13 @@
-version: '3.7'
+version: '3.4'
+
+x-common-variables: &common-variables
+   # Set to user with access to folders
+   PUID: 0
+   # Set to user group with access to folders
+   PGID: 0
+   # Set timezone for logs
+   TZ: Europe/Prague
+
 
 services:
   # Sonarr is for series download automation
@@ -11,16 +20,10 @@ services:
       # Set to folder with shows
       - /volume1/Series/TV show:/tv
       # Set to download folder
-      - /volume1/Download/complete:/downloads
+      - /volume1/downloads/complete:/downloads
     ports:
       - 8989:8989
-    environment:
-      # Set to user with access to folders
-      - PUID=1026
-      # Set to user group with access to folders
-      - PGID=65538
-      # Set timezone for logs
-      - TZ=Europe/Copenhagen
+    environment: *common-variables
     restart: always
 
   # Radarr is for movie download automation
@@ -33,16 +36,10 @@ services:
       # Set to folder with movies
       - /volume2/Movies:/movies
       # Set to download folder
-      - /volume1/Download/complete:/downloads
+      - /volume1/downloads/complete:/downloads
     ports:
       - 7878:7878
-    environment:
-      # Set to user with access to folders
-      - PUID=1026
-      # Set to user group with access to folders
-      - PGID=65538
-      # Set timezone for logs
-      - TZ=Europe/Copenhagen
+    environment: *common-variables
     restart: always
 
   # Bazaar is for subtitle download automation
@@ -57,11 +54,5 @@ services:
       - /volume1/Series/TV show:/tv
     ports:
       - 6767:6767
-    environment:
-      # Set to user with access to folders
-      - PUID=1026
-      # Set to user group with access to folders
-      - PGID=65538
-      # Set timezone for logs
-      - TZ=Europe/Copenhagen
+    environment: *common-variables
     restart: always
