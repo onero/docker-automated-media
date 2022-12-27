@@ -10,17 +10,33 @@ x-common-variables: &common-variables
 
 
 services:
+# Sonarr is for series download automation
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: Sabnzbd
+    volumes:
+      - ./sabnzbd-data:/config
+      # Set to folder with shows
+      - /volume1/Series:/tv
+      # Set to download folder
+      - /volume1/Downloads/complete:/downloads
+      - /volume1/Downloads/incomplete:/incomplete
+    ports:
+      - 8080:8080
+    environment: *common-variables
+    restart: always
+
   # Sonarr is for series download automation
   sonarr:
     image: mdhiggins/sonarr-sma
-    container_name: adamino-sonarr
+    container_name: Sonarr
     volumes:
       - ./sonarr-data:/config
       - ./config:/usr/local/sma/config
       # Set to folder with shows
-      - /volume1/Series/TV show:/tv
+      - /volume1/Series:/tv
       # Set to download folder
-      - /volume1/downloads/complete:/downloads
+      - /volume1/Downloads/complete:/downloads
     ports:
       - 8989:8989
     environment: *common-variables
@@ -29,14 +45,14 @@ services:
   # Radarr is for movie download automation
   radarr:
     image: mdhiggins/radarr-sma
-    container_name: adamino-radarr
+    container_name: Radarr
     volumes:
       - ./radarr-data:/config
       - ./config:/usr/local/sma/config
       # Set to folder with movies
-      - /volume2/Movies:/movies
+      - /volume1/Movies:/movies
       # Set to download folder
-      - /volume1/downloads/complete:/downloads
+      - /volume1/Downloads/complete:/downloads
     ports:
       - 7878:7878
     environment: *common-variables
@@ -45,11 +61,11 @@ services:
   # Bazaar is for subtitle download automation
   bazarr:
     image: linuxserver/bazarr
-    container_name: adamino-bazarr
+    container_name: Bazarr
     volumes:
       - ./bazarr-data:/config
       # Set to folder with movies
-      - /volume2/Movies:/movies
+      - /volume1/Movies:/movies
       # Set to folder with shows
       - /volume1/Series/TV show:/tv
     ports:
