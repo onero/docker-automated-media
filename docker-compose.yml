@@ -67,7 +67,7 @@ services:
       # Set to folder with movies
       - /volume1/Movies:/movies
       # Set to folder with shows
-      - /volume1/Series/TV show:/tv
+      - /volume1/Series:/tv
     ports:
       - 6767:6767
     environment: *common-variables
