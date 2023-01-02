@@ -72,3 +72,21 @@ services:
       - 6767:6767
     environment: *common-variables
     restart: always
+
+  # Plex is for media streaming
+  plex:
+    image: ghcr.io/linuxserver/plex
+    container_name: Plex
+    volumes:
+      - ./plex-data/config:/config
+      - ./plex-data/transcode:/transcode
+      # Set to folder with movies
+      - /volume1/Movies:/movies
+      # Set to folder with shows
+      - /volume1/Series:/tv
+    ports:
+      - 32400:32400
+    environment:
+      <<: *common-variables
+      PLEX_CLAIM: claim-<your-string>
+      HOSTNAME: "AdaminoFlix"
