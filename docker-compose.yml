@@ -1,16 +1,14 @@
-version: '3.4'
+version: '3.9'
 
-x-common-variables: &common-variables
-   # Set to user with access to folders
-   PUID: 0
-   # Set to user group with access to folders
-   PGID: 0
-   # Set timezone for logs
-   TZ: Europe/Prague
-
+x-common-variables: &common-variables # Set to user with access to folders
+  PUID: 0
+  # Set to user group with access to folders
+  PGID: 0
+  # Set timezone for logs
+  TZ: Europe/Prague
 
 services:
-# Sonarr is for series download automation
+  # Sonarr is for series download automation
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
     container_name: Sabnzbd
@@ -84,9 +82,10 @@ services:
       - /volume1/Movies:/movies
       # Set to folder with shows
       - /volume1/Series:/tv
+    network_mode: host
     ports:
       - 32400:32400
     environment:
       <<: *common-variables
       PLEX_CLAIM: claim-<your-string>
-      HOSTNAME: "AdaminoFlix"
+      HOSTNAME: 'AdaminoFlix'
