@@ -183,6 +183,27 @@ docker-compose down
 ./show-conversion-log.sh
 ```
 
+### Manual Media Conversion
+
+If you've added media to your library without SMA conversion (e.g., files added directly without going through Sonarr/Radarr), you can manually trigger conversion using the `manual-conversion.sh` script.
+
+**For Sonarr (TV Shows):**
+```bash
+nohup /bin/bash "$(pwd)/manual-conversion.sh" Sonarr "/tv/Mr. Robot" > /dev/null 2>&1 &
+```
+
+**For Radarr (Movies):**
+```bash
+nohup /bin/bash "$(pwd)/manual-conversion.sh" Radarr "/movies/Gladiator" > /dev/null 2>&1 &
+```
+
+**Monitor conversion progress:**
+```bash
+tail -f ./conversion_progress.log
+```
+
+> **Note:** Replace the path with your actual media folder path. The script runs in the background and logs progress to `conversion_progress.log`.
+
 ### Restart a Specific Service
 
 ```bash
