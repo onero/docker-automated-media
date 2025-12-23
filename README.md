@@ -180,7 +180,7 @@ docker-compose down
 ### View Conversion Logs
 
 ```bash
-./show-conversion-log.sh
+./scripts/show-conversion-log.sh
 ```
 
 ### Manual Media Conversion
@@ -189,12 +189,12 @@ If you've added media to your library without SMA conversion (e.g., files added 
 
 **For Sonarr (TV Shows):**
 ```bash
-nohup /bin/bash "$(pwd)/manual-conversion.sh" Sonarr "/tv/Mr. Robot" > /dev/null 2>&1 &
+nohup /bin/bash "$(pwd)/scripts/manual-conversion.sh" Sonarr "/tv/Mr. Robot" > /dev/null 2>&1 &
 ```
 
 **For Radarr (Movies):**
 ```bash
-nohup /bin/bash "$(pwd)/manual-conversion.sh" Radarr "/movies/Gladiator" > /dev/null 2>&1 &
+nohup /bin/bash "$(pwd)/scripts/manual-conversion.sh" Radarr "/movies/Gladiator" > /dev/null 2>&1 &
 ```
 
 **Monitor conversion progress:**
@@ -233,7 +233,9 @@ docker-compose restart sonarr
 ├── config/
 │   ├── autoProcess.ini.sample   # SMA configuration template
 │   └── autoProcess.ini          # Your SMA configuration (create this)
-├── show-conversion-log.sh       # Helper script to view conversion logs
+├── scripts/
+│   ├── show-conversion-log.sh       # Helper script to view conversion logs
+│   └── manual-conversion.sh         # Manual media conversion script
 ├── sabnzbd-data/                # SABnzbd config (auto-created)
 ├── sonarr-data/                 # Sonarr config (auto-created)
 ├── radarr-data/                 # Radarr config (auto-created)
